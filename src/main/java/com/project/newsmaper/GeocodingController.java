@@ -1,28 +1,13 @@
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+package com.project.newsmaper;
 
-import java.io.IOException;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class GeocodingController {
 
-    @Autowired
-    private GeocodingService geocodingService;
-
-    @PostMapping("/search")
-    public String search(@RequestParam("query") String query, Model model) {
-        JSONObject location;
-        try {
-            location = geocodingService.search(query);
-            model.addAttribute("location", location);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    @GetMapping("/")
+    public String home() {
         return "index";
     }
 }
