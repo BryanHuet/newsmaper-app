@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class NewsmaperApplication {
 
 	public static void main(String[] args) {
+		System.out.println("START APPLICATION");
 		SpringApplication.run(NewsmaperApplication.class, args);
 	}
 
