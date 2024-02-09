@@ -30,25 +30,29 @@
     
     geojson.eachLayer(function (layer) {
         var countryName = layer.feature.properties.name
+        var countryId = layer.feature.properties.id
         layer.bindPopup(countryName);
         layer.on('click', function(event){
             var divNews = document.getElementById("news");
             divNews.textContent = countryName;
-            console.log("hey "+countryName);
+            console.log("hey "+countryName+" id: "+countryId);
 
 
             var data = {
                 "name":countryName,
-                "id":1
+                "id":countryId
             }
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://localhost:8081/countries", true);
+            xhr.open("POST", "http://localhost:8081/demo/countries", true);
             xhr.setRequestHeader("Accept", "application/json");
             xhr.setRequestHeader("Content-Type", "application/json");
             
             xhr.send(JSON.stringify(data));
 
-
+           // 4. This will be called after the response is received
+            xhr.onload = function() {
+                console.log(xhr.responseText);
+            };
 
         })
     });
