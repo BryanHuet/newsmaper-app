@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DataController {
   @Autowired
   private CountriesRepository countriesRepository;
+  @Autowired
+  private NewsRepository newsRepository;
 
   @GetMapping(path="/all")
   public @ResponseBody Iterable<Country> getAllUsers() {
@@ -24,13 +26,23 @@ public class DataController {
 
 
     @PostMapping(path="/countries")
-    public @ResponseBody String test(@RequestBody Country country){
+    public @ResponseBody Country test(@RequestBody Country country){
         System.out.println("posted here");
         System.out.println(country.getName());
         System.out.println(country.getId());
         Country finded = countriesRepository.findById(country.getId()).get();
-       return finded.getCapital();
+       return finded;
     }
+
+    @PostMapping(path="/news")
+    public @ResponseBody Iterable<News> test2(@RequestBody Country country){
+        System.out.println("posted here");
+        System.out.println(country.getName());
+        System.out.println(country.getId());
+
+       return newsRepository.findByCountryId(country.getId());
+    }
+
 
 
 }
