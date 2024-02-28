@@ -9,36 +9,41 @@ import jakarta.persistence.Table;
 public class News {
     @Id
     private Integer id;
-    private Integer country_id;
-    private String source;
+    private Integer id_country;
+    private Integer id_source;
+    private Integer id_date;
     private String title;
     private String link;
-    private String origin;
-    private String timestamp;
+    private String description;
+    private String media;
 
     public News(){
         super();
     }
 
-    public News(Integer id, Integer country_id, String source,
-    String title, String link, String origin, String timestamp){
+    public News(Integer id, Integer id_country, Integer id_source,
+    Integer id_date, String title, String link, String description, String media){
         this.id=id;
-        this.country_id=country_id;
-        this.source=source;
+        this.id_country=id_country;
+        this.id_source=id_source;
+        this.id_date=id_date;
         this.title=title;
         this.link=link;
-        this.origin=origin;
-        this.timestamp=timestamp;
+        this.description=description;
+        this.media=media;
     }
 
     public Integer getId(){
         return this.id;
     }
-    public Integer getCountryId(){
-        return this.country_id;
+    public Integer getIdCountry(){
+        return this.id_country;
     }
-    public String getSource(){
-        return this.source;
+    public Integer getIdSource(){
+        return this.id_source;
+    }
+    public Integer getIdDate(){
+        return this.id_date;
     }
     public String getTitle(){
         return this.title;
@@ -46,21 +51,24 @@ public class News {
     public String getLink(){
         return this.link;
     }
-    public String getOrigin(){
-        return this.origin;
+    public String getDescription(){
+        return this.description;
     }
-    public String getTimestamp(){
-        return this.timestamp;
+    public String getMedia(){
+        return this.media;
     }
 
     public void setId(Integer id){
         this.id=id;
     }
-    public void setCountryId(Integer country_id){
-        this.country_id=country_id;
+    public void setIdCountry(Integer id_country){
+        this.id_country = id_country;
     }
-    public void setSource(String source){
-        this.source = source;
+    public void setIdSource(Integer id_source){
+        this.id_source = id_source;
+    }
+    public void setIdDate(Integer id_date){
+        this.id_date=id_date;
     }
     public void setTitle(String title){
         this.title=title;
@@ -68,11 +76,11 @@ public class News {
     public void setLink(String link){
         this.link=link;
     }
-    public void setOrigin(String origin){
-        this.origin=origin;
+    public void setMedia(String media){
+        this.media=media;
     }
-    public void setTimestamp(String timestamp){
-        this.timestamp = timestamp;
+    public void setDescription(String description){
+        this.description = description;
     }
 
 

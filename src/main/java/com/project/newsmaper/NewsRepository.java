@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface NewsRepository extends CrudRepository<News, Integer> {
 
-    @Query(value = "SELECT * FROM news c WHERE c.country_id=%?1",nativeQuery = true)
+    @Query(value = "SELECT * FROM news c WHERE c.id_country=%?1",nativeQuery = true)
     public List<News> findByCountryId(Integer country_id);
 }

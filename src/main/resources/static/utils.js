@@ -1,10 +1,15 @@
 function createCard(element){
 
+    const link = document.createElement('a');
+    link.href = element.link;
+    link.target = "_blank";
+    link.className = "link-offset-2 link-underline link-underline-opacity-0";
+
     const col = document.createElement("div");
     col.className = "col";
     
     const card = document.createElement("div");
-    card.className = "card h-100";
+    card.className = "card";
 
     const card_body = document.createElement('div');
     card_body.className = "card-body";
@@ -21,6 +26,34 @@ function createCard(element){
     card_body.appendChild(card_text);
     card.appendChild(card_body);
     col.appendChild(card);
-
-    return col;
+    link.appendChild(card);
+    return link;
 }
+
+function createTable(element){
+    
+    const tr = document.createElement("tr");
+    const th = document.createElement("th");
+    th.scope = "row";
+    th.textContent = element.id;
+
+    const td_title = document.createElement("td");
+    td_title.textContent = element.title;
+    const td_source = document.createElement("td");
+    td_source.textContent = element.source;
+
+
+    tr.appendChild(th);
+    tr.appendChild(td_title);
+    tr.appendChild(td_source);
+    return tr;
+
+
+
+}
+
+
+
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
