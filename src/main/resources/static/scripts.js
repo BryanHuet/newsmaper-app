@@ -24,7 +24,7 @@ function create_card_element(element){
     card_div_body_text.textContent = element.description;
     
     const card_source = document.createElement("p");
-    card_source.textContent = element.idSource; 
+    card_source.textContent = element.source; 
 
     const card_div_body = document.createElement("div");
     card_div_body.className = "card-body p-4";

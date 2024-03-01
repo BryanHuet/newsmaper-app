@@ -16,13 +16,15 @@ public class News {
     private String link;
     private String description;
     private String media;
+    private String source;
 
     public News(){
         super();
     }
 
     public News(Integer id, Integer id_country, Integer id_source,
-    Integer id_date, String title, String link, String description, String media){
+    Integer id_date, String title, String link, String description, 
+    String media, String source){
         this.id=id;
         this.id_country=id_country;
         this.id_source=id_source;
@@ -31,6 +33,7 @@ public class News {
         this.link=link;
         this.description=description;
         this.media=media;
+        this.source=source;
     }
 
     public Integer getId(){
@@ -57,6 +60,9 @@ public class News {
     public String getMedia(){
         return this.media;
     }
+    public String getSource(){
+        return this.source;
+    }
 
     public void setId(Integer id){
         this.id=id;
@@ -81,6 +87,9 @@ public class News {
     }
     public void setDescription(String description){
         this.description = description;
+    }
+    public void setSource(String source){
+        this.source = source;
     }
 
 
