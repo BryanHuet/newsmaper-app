@@ -7,10 +7,10 @@ import java.util.List;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
-
+String query = "hey";
 @Repository
 public interface NewsRepository extends CrudRepository<News, Integer> {
 
-    @Query(value = "SELECT n.id, n.id_country, n.id_source ,n.id_date, n.title, n.link, n.description, n.media, s.name as source FROM news n JOIN sources s ON n.id_source = s.id WHERE n.id_country=%?1",nativeQuery = true)
+    @Query(value = "SELECT n.id, n.id_country, n.id_source ,n.id_date, n.title, n.link, n.description, n.media, s.name as source FROM news n JOIN sources s ON n.id_source = s.id JOIN date d ON n.id_date = d.id WHERE n.id_country=%?1",nativeQuery = true)
     public List<News> findByCountryId(Integer country_id);
 }

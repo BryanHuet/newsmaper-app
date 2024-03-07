@@ -37,10 +37,23 @@ function create_card_element(element){
     card_img.src = element.media;
     card_img.alt = "...";
 
+    
+    
+    const card_a = document.createElement("a");
+    card_a.href = element.link;
+    card_a.style = "all: unset; cursor: pointer;";
+    card_a.target = "_blank";
+    card_a.appendChild(card_img);
+    card_a.appendChild(card_div_body);
+
+    
     const card_div = document.createElement("div");
     card_div.className = "card h-100";
-    card_div.appendChild(card_img);
-    card_div.appendChild(card_div_body);
+
+    card_div.appendChild(card_a);
+
+
+
 
     const div_col_mb = document.createElement("div");
     div_col_mb.className = "col mb-5";
@@ -48,3 +61,9 @@ function create_card_element(element){
 
     return div_col_mb;
 }
+
+
+
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
