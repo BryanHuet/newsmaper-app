@@ -1,4 +1,4 @@
-package com.project.newsmaper;
+package com.project.newsmaper.objects;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;

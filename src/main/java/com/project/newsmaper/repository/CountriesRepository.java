@@ -1,6 +1,8 @@
-package com.project.newsmaper;
+package com.project.newsmaper.repository;
 
 import org.springframework.data.repository.CrudRepository;
+
+import com.project.newsmaper.objects.Country;
 
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
