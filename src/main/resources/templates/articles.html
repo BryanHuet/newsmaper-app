@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Articles</title>
+        <!-- Favicon-->
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https:////cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
+
+        <!-- Core theme CSS (includes Bootstrap)-->
+       
+        <link href="styles.css" rel="stylesheet" />
+        <link href="utils.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    </head>
+
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/">📰 Newsmapper</a>
+                <div>
+                    <a class="navbar-brand" href="/">Map</a>
+                    <a class="navbar-brand" href="/articles">Articles</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- News section -->
+        <section class="py-5">
+
+            <div>
+                <h1 class="text-center">Articles Table</h1>
+            </div>
+
+
+            <div class="row py-5">
+                <div class="col-lg-10 mx-auto">
+                  <div class="card rounded shadow border-0">
+                    <div class="card-body p-5 bg-white rounded">
+                      <div class="table-responsive">
+                        <table id="example" style="width:100%" class="table table-striped table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Title</th>
+                              <th>Source</th>
+                              <th>Link</th>
+                              <th>Date</th>
+                            </tr>
+                          </thead>
+                          <tbody id="table-body">
+                           
+
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            <div id="div-container-news" class="container px-4 px-lg-5 mt-5">
+                <div id="div-content-news" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+
+    </body>
+</html>
+
+<script type="text/javascript" src="countries.js"></script>
+<script type="text/javascript" src="scripts.js"></script>
+<script>
+
+
+let tableBody = document.getElementById("table-body")
+
+$( document ).ready(function() {
+    console.log("here ??")
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:8081/data/all", true);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+    xhr.onload = function() {
+        tableBody.textContent = "";
+        const ob = JSON.parse(xhr.responseText);
+        const ob_length = ob.length;
+        const ob_arr = Object.values(ob);
+        console.log(ob_length);
+        
+        ob_arr.forEach(element => {
+            const row = create_table_entries(element);
+            tableBody.appendChild(row);
+            console.log(element);
+        }); 
+        let table = new DataTable('#example');
+    };
+   
+
+
+
+
+
+});
+
+</script>

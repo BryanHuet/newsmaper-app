@@ -12,4 +12,9 @@ public class MapController {
         return "index";
     }
 
+    @GetMapping("/articles")
+    public String articles(){
+        return "articles";
+    }
+
 }

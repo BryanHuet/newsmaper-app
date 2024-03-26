@@ -26,11 +26,17 @@ function create_card_element(element){
     const card_source = document.createElement("p");
     card_source.textContent = element.source; 
 
+  
+
     const card_div_body = document.createElement("div");
     card_div_body.className = "card-body p-4";
     card_div_body.appendChild(card_source);
     card_div_body.appendChild(card_title);
     card_div_body.appendChild(card_div_body_text);
+
+    const card_footer = document.createElement("div");
+    card_footer.className = "card-footer"
+    card_footer.textContent = element.newField;
 
     const card_img = document.createElement("img");
     card_img.className = "card-img-top";
@@ -45,13 +51,14 @@ function create_card_element(element){
     card_a.target = "_blank";
     card_a.appendChild(card_img);
     card_a.appendChild(card_div_body);
+    
 
     
     const card_div = document.createElement("div");
     card_div.className = "card h-100";
 
     card_div.appendChild(card_a);
-
+    card_div.appendChild(card_footer);
 
 
 
@@ -62,6 +69,34 @@ function create_card_element(element){
     return div_col_mb;
 }
 
+
+
+function create_table_entries(element){
+
+    const td_title = document.createElement("td");
+    td_title.innerText = element.title;
+
+    const td_source = document.createElement("td");
+    td_source.innerText = element.source;
+
+    const td_date = document.createElement("td");
+    td_date.innerText = element.newField;
+
+    const td_link = document.createElement("td");
+    const link = document.createElement("a");
+    link.href = element.link;
+    link.target = "_blank";
+    link.innerText = "link";
+    td_link.appendChild(link);
+
+    const tr = document.createElement("tr");
+    tr.appendChild(td_title);
+    tr.appendChild(td_source);
+    tr.appendChild(td_link);
+    tr.appendChild(td_date);
+
+    return tr;
+}
 
 
 function shuffle(array) {

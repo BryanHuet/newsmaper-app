@@ -1,0 +1,20 @@
+﻿version: '3.8'
+
+services:
+  newsmaper-app:
+    image: newsmaper-app
+    ports:
+      - 8081:8081
+    extra_hosts:
+        - "host.docker.internal:host-gateway"
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    networks:
+      - net 
+
+networks:
+  net:
+    external: true
+    name: my_net

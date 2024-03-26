@@ -1,13 +1,10 @@
 package com.project.newsmaper.objects;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.Date;
+import java.lang.Comparable;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
-
-@Entity
-@Table(name="news")
-public class News {
-    @Id
+public class NewsDTO implements Comparable<NewsDTO>{
     private Integer id;
     private Integer id_country;
     private Integer id_source;
@@ -17,19 +14,12 @@ public class News {
     private String description;
     private String media;
     private String source;
-    private Integer year;
-    private Integer month;
-    private Integer day;
-    private Integer hours;
+    private String newfield;
+    private Date date;
 
-    public News(){
-        super();
-    }
-
-    public News(Integer id, Integer id_country, Integer id_source,
+    public NewsDTO(Integer id, Integer id_country, Integer id_source,
     Integer id_date, String title, String link, String description, 
-    String media, String source, Integer year, Integer month,
-    Integer day, Integer hours){
+    String media, String source, Integer year, Integer month, Integer day, Integer hours){
         this.id=id;
         this.id_country=id_country;
         this.id_source=id_source;
@@ -39,14 +29,21 @@ public class News {
         this.description=description;
         this.media=media;
         this.source=source;
-        this.year=year;
-        this.month=month;
-        this.day=day;
-        this.hours=hours;
+
+        SimpleDateFormat format = new SimpleDateFormat("HH/dd/MM/yyyy");
+        try{
+            this.date = format.parse(String.format("%d/%d/%d/%d", hours, day, month, year));
+        }catch (ParseException e) {e.printStackTrace();}    
+
+        this.newfield = this.date.toString();
+       
     }
 
     public Integer getId(){
         return this.id;
+    }
+    public String getNewField(){
+        return this.newfield;
     }
     public Integer getIdCountry(){
         return this.id_country;
@@ -72,19 +69,9 @@ public class News {
     public String getSource(){
         return this.source;
     }
-    public Integer getYear(){
-        return this.year;
+    public Date getDate(){
+        return this.date;
     }
-    public Integer getMonth(){
-        return this.month;
-    }
-    public Integer getDay(){
-        return this.day;
-    }
-    public Integer getHours(){
-        return this.hours;
-    }
-    
     
     public void setId(Integer id){
         this.id=id;
@@ -113,18 +100,12 @@ public class News {
     public void setSource(String source){
         this.source = source;
     }
-    public void setYear(Integer year){
-        this.year=year;
+
+    @Override
+    public int compareTo(NewsDTO other) {
+        return this.getDate().compareTo(other.getDate());
     }
-    public void setMonth(Integer month){
-        this.month=month;
-    }
-    public void setDay(Integer day){
-        this.day=day;
-    }
-    public void setHours(Integer hours){
-        this.hours=hours;
-    }
+
 
 
 }
